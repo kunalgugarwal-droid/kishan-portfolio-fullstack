@@ -13,7 +13,7 @@ const projectSchema = new mongoose.Schema({
   category: {
     type: String,
     required: true,
-    enum: ['web', 'mobile', 'design', 'other'],
+    enum: ['work', 'web', 'mobile', 'design', 'other'],
     default: 'other'
   },
   videoUrl: {
