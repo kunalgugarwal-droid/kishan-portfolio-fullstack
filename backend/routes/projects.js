@@ -37,15 +37,32 @@ router.get('/:id', async (req, res) => {
 
 // POST create project
 router.post('/', async (req, res) => {
-  const { title, image, category, videoUrl, description } = req.body;
-  
+  const {
+    title,
+    image,
+    category,
+    videoUrl,
+    youtubeUrl,
+    description,
+    featured
+  } = req.body;
+
   if (!title || !image || !category) {
-    return res.status(400).json({ message: 'Title, image, and category are required' });
+    return res.status(400).json({
+      message: 'Title, image, and category are required'
+    });
   }
 
-  const project = new Project({ title, image, category, videoUrl, description });
-
   try {
+    const project = new Project({
+      title,
+      image,
+      category,
+      videoUrl: videoUrl || youtubeUrl || '',
+      description,
+      featured: featured || false
+    });
+
     const newProject = await project.save();
     res.status(201).json(newProject);
   } catch (error) {
