@@ -12,6 +12,16 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET featured projects only
+router.get('/featured', async (req, res) => {
+  try {
+    const projects = await Project.find({ featured: true }).sort({ createdAt: -1 });
+    res.json(projects);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 // GET single project
 router.get('/:id', async (req, res) => {
   try {
