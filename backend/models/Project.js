@@ -24,6 +24,11 @@ const projectSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  categoryLabel: {
+    type: String,
+    default: 'Work',
+    trim: true
+  },
   featured: {
     type: Boolean,
     default: false

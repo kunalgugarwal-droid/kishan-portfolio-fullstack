@@ -44,7 +44,8 @@ router.post('/', async (req, res) => {
     videoUrl,
     youtubeUrl,
     description,
-    featured
+    featured,
+    categoryLabel
   } = req.body;
 
   if (!title || !image || !category) {
@@ -60,7 +61,8 @@ router.post('/', async (req, res) => {
       category,
       videoUrl: videoUrl || youtubeUrl || '',
       description,
-      featured: featured || false
+      featured: featured || false,
+      categoryLabel: categoryLabel || 'Work'
     });
 
     const newProject = await project.save();
